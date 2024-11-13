@@ -27,8 +27,9 @@ public class ProductBasket {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof ProductBasket) {
-            ProductBasket other = (ProductBasket) obj;
+        if (obj instanceof ProductBasket other) {
+            if (obj == this) return true;
+            if (obj.getClass() != getClass()) return false;
             return java.util.Arrays.equals(getProduct(), other.getProduct());
         }
         return false;
@@ -60,13 +61,10 @@ public class ProductBasket {
     // Метод #3 - печатает содержимое корзины
     public void printAllContentBasket() {
         int sum = 0;
-        if (size <= product.length) {
-            for (int i = 0; i < size; i++) {
-                if (size <= product.length) {
-                    Product list = product[i];
-                    System.out.println(list.toString());
-                    sum += list.getPrice();
-                }
+        for (int i = 0; i < size; i++) {
+            if (size <= product.length) {
+                System.out.println(product[i].toString());
+                sum += product[i].getPrice();
             }
         }
         System.out.println("Итого: " + sum + " рублей.");
@@ -78,9 +76,8 @@ public class ProductBasket {
     // Метод #4 - проверяем продукт в корзине по имени
     public void checkingProduct(String title) {
         for (int i = 0; i < size; i++) {
-            Product list = product[i];
-            if (list.getTitle().equals(title)) {
-                System.out.println("Продукт: " + list.getTitle() + " - есть в корзине");
+            if (product[i].getTitle().equals(title)) {
+                System.out.println("Продукт: " + product[i].getTitle() + " - есть в корзине");
                 return;
             }
         }
@@ -90,8 +87,8 @@ public class ProductBasket {
     // Метод #5 - очистка корзины
     public void clearBasket() {
         for (int i = 0; i < product.length; i++) {
-            product[size - 1] = null;
-            size--;
+            product[i] = null;
+            size = 0;
         }
         System.out.println("Корзина очищена");
     }
