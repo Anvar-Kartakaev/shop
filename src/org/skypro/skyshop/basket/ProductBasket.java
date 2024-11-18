@@ -8,6 +8,7 @@ public class ProductBasket {
     private final Product[] product;
     private int size;
 
+
     public ProductBasket() {
         this.product = new Product[5];
     }
