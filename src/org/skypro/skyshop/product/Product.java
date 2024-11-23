@@ -2,14 +2,12 @@ package org.skypro.skyshop.product;
 
 import java.util.Objects;
 
-public class Product {
+public abstract class Product {
     private String title;
-    private int price;
+    int count = 0;
 
-
-    public Product(String title, int price) {
+    public Product(String title) {
         this.title = title;
-        this.price = price;
     }
 
     public String getTitle() {
@@ -20,12 +18,12 @@ public class Product {
         this.title = title;
     }
 
-    public int getPrice() {
-        return price;
-    }
+    public abstract int getPrice();
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void isSpecial() {
+        if (getTitle() == null || getTitle().isEmpty()) {
+            System.out.println("Товаров нет");
+        }
     }
 
     @Override
@@ -33,16 +31,16 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return price == product.price && Objects.equals(title, product.title);
+        return Objects.equals(title, product.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, price);
+        return Objects.hash(title);
     }
 
     @Override
     public String toString() {
-        return getTitle() + ": " + getPrice() + " рублей.";
+        return getTitle();
     }
 }

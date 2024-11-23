@@ -2,7 +2,6 @@ package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.ProductBasket;
 
-
 public class App {
 
     public static void main(String[] args) {
@@ -10,7 +9,9 @@ public class App {
 
         //Добавление продукта в корзину
         System.out.println("Добавление продукта в корзину");
-        productBasket.acceptProducts("Яблоки", 50);
+        productBasket.acceptProducts("Яблоки", 50); // Обычный товар
+        productBasket.acceptDiscountProducts("Бананы", 100, 20); // Товар со скидкой
+        productBasket.acceptFixPriceProducts("Киви"); // Товар со специальной фиксированной ценой
         productBasket.printAllContentBasket();
 
         //Добавление продукта в заполненную корзину, в которой нет свободного места
@@ -18,12 +19,11 @@ public class App {
         // Сначала заполним корзину
         productBasket.acceptProducts("Помидоры", 80);
         productBasket.acceptProducts("Виноград", 120);
-        productBasket.acceptProducts("Огурцы", 40);
-        productBasket.acceptProducts("Груши", 60);
         // Проверим
         productBasket.printAllContentBasket();
+
         // Попробуем добавить продукт в заполненную корзину
-        System.out.println("Попробуем добавить продукт в заполненную корзину");
+        System.out.println("\nПопробуем добавить продукт в заполненную корзину");
         productBasket.acceptProducts("Баклажаны", 50);
 
         //Печать содержимого корзины с несколькими товарами
@@ -36,7 +36,7 @@ public class App {
 
         //Поиск товара, который есть в корзине
         System.out.println("\nПоиск товара, который есть в корзине");
-        productBasket.checkingProduct("Огурцы");
+        productBasket.checkingProduct("Помидоры");
 
         //Поиск товара, которого нет в корзине
         System.out.println("\nПоиск товара, которого нет в корзине");
