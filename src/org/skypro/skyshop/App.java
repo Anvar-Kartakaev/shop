@@ -11,6 +11,7 @@ public class App {
         System.out.println("Добавление продукта в корзину");
         productBasket.acceptProducts("Яблоки", 50); // Обычный товар
         productBasket.acceptDiscountProducts("Бананы", 100, 20); // Товар со скидкой
+        productBasket.acceptDiscountProducts("Орехи", 150, 30); // Товар со скидкой
         productBasket.acceptFixPriceProducts("Киви"); // Товар со специальной фиксированной ценой
         productBasket.printAllContentBasket();
 

@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public abstract class Product {
     private String title;
-    int count = 0;
 
     public Product(String title) {
         this.title = title;
@@ -18,13 +17,11 @@ public abstract class Product {
         this.title = title;
     }
 
-    public abstract int getPrice();
-
-    public void isSpecial() {
-        if (getTitle() == null || getTitle().isEmpty()) {
-            System.out.println("Товаров нет");
-        }
+    public boolean isSpecial() {
+        return false;
     }
+
+    public abstract int getPrice();
 
     @Override
     public boolean equals(Object o) {

@@ -22,16 +22,21 @@ public class DiscountedProduct extends Product {
     }
 
     @Override
+    public boolean isSpecial() {
+        return true;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DiscountedProduct product = (DiscountedProduct) o;
-        return basePrice == product.basePrice;
+        return basePrice == product.basePrice && discountPercentage == product.discountPercentage;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(basePrice);
+        return Objects.hash(basePrice, discountPercentage);
     }
 
     @Override

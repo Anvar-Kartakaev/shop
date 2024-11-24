@@ -85,13 +85,17 @@ public class ProductBasket {
     // Метод #3 - печатает содержимое корзины
     public void printAllContentBasket() {
         int sum = 0;
+        int isSpecial = 0;
         for (int i = 0; i < size; i++) {
             if (size <= product.length) {
                 System.out.println(product[i].toString());
                 sum += product[i].getPrice();
+                if (product[i].isSpecial() == true) {
+                    isSpecial++;
+                }
             }
         }
-        System.out.println("Итого: " + sum + " рублей.");
+        System.out.println("Итого: " + sum + " рублей.\nСпециальных товаров: " + isSpecial + " шт.");
         if (size <= 0) {
             System.out.println("В корзине пусто");
         }

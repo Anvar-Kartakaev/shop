@@ -20,6 +20,11 @@ public class SimpleProduct extends Product {
     }
 
     @Override
+    public boolean isSpecial() {
+        return false;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
