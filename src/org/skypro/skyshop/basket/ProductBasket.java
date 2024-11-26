@@ -1,6 +1,9 @@
 package org.skypro.skyshop.basket;
 
+import org.skypro.skyshop.product.DiscountedProduct;
+import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.SimpleProduct;
 
 import java.util.Arrays;
 
@@ -40,12 +43,32 @@ public class ProductBasket {
         return Arrays.toString(product);
     }
 
-    // Метод #1 - принимаем продукты
+    // Метод #1 - принимаем обычные продукты
     public void acceptProducts(String title, int price) {
         if (size >= product.length) {
             System.out.println("Невозможно добавить продукт");
         } else {
-            Product cartList = new Product(title, price);
+            SimpleProduct cartList = new SimpleProduct(title, price);
+            product[size++] = cartList;
+        }
+    }
+
+    // Метод #1.2 - принимаем продукты со скидкой
+    public void acceptDiscountProducts(String title, int basePrice, int discountPrice) {
+        if (size >= product.length) {
+            System.out.println("Невозможно добавить продукт");
+        } else {
+            DiscountedProduct cartList = new DiscountedProduct(title, basePrice, discountPrice);
+            product[size++] = cartList;
+        }
+    }
+
+    // Метод #1.3 - принимаем продукты с фиксированной ценой
+    public void acceptFixPriceProducts(String title) {
+        if (size >= product.length) {
+            System.out.println("Невозможно добавить продукт");
+        } else {
+            FixPriceProduct cartList = new FixPriceProduct(title);
             product[size++] = cartList;
         }
     }
@@ -62,13 +85,17 @@ public class ProductBasket {
     // Метод #3 - печатает содержимое корзины
     public void printAllContentBasket() {
         int sum = 0;
+        int isSpecial = 0;
         for (int i = 0; i < size; i++) {
             if (size <= product.length) {
                 System.out.println(product[i].toString());
                 sum += product[i].getPrice();
+                if (product[i].isSpecial() == true) {
+                    isSpecial++;
+                }
             }
         }
-        System.out.println("Итого: " + sum + " рублей.");
+        System.out.println("Итого: " + sum + " рублей.\nСпециальных товаров: " + isSpecial + " шт.");
         if (size <= 0) {
             System.out.println("В корзине пусто");
         }
