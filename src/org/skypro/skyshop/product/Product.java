@@ -1,12 +1,22 @@
 package org.skypro.skyshop.product;
 
+import org.skypro.skyshop.article.Article;
+
 import java.util.Objects;
 
-public abstract class Product {
+public abstract class Product implements Article.Searchable {
     private String title;
 
     public Product(String title) {
         this.title = title;
+    }
+
+    public void searchTerm() {
+        System.out.println(getTitle());
+    }
+
+    public void contentType() {
+        System.out.println("PRODUCT");
     }
 
     public String getTitle() {
