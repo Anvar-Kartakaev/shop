@@ -1,25 +1,14 @@
 package org.skypro.skyshop;
 
-import org.skypro.skyshop.SearchEngine.SearchEngine;
 import org.skypro.skyshop.basket.ProductBasket;
 
 public class App {
 
     public static void main(String[] args) {
         ProductBasket productBasket = new ProductBasket();
-        SearchEngine searchEngine = new SearchEngine();
-
-        //Тестирование изменений SearchEngine
-        System.out.println("Тестирование изменений");
-        searchEngine.add("Товар");
-        searchEngine.search("Товар");
-
-        //Тестирование изменений Article
-        System.out.println("Тестирование изменений Article");
-
 
         //Добавление продукта в корзину
-        System.out.println("\nДобавление продукта в корзину");
+        System.out.println("Добавление продукта в корзину");
         productBasket.acceptProducts("Яблоки", 50); // Обычный товар
         productBasket.acceptDiscountProducts("Бананы", 100, 20); // Товар со скидкой
         productBasket.acceptDiscountProducts("Орехи", 150, 30); // Товар со скидкой

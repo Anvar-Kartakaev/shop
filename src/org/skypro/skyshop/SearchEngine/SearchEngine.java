@@ -1,13 +1,12 @@
 package org.skypro.skyshop.SearchEngine;
 
-import org.skypro.skyshop.article.Article;
-import org.skypro.skyshop.article.Article.Searchable;
+import org.skypro.skyshop.Article.Searchable;
 
 public class SearchEngine {
     private final Searchable[] searchable;
     private int size;
 
-    public SearchEngine() {
+    public SearchEngine(Searchable[] searchable) {
         this.searchable = new Searchable[5];
     }
 
@@ -19,12 +18,13 @@ public class SearchEngine {
         return size;
     }
 
-    public void search(String query) {
+    String search(String query) {
         for (Searchable value : searchable) {
             if (value != null) {
                 System.out.println(value);
             }
         }
+        return query;
     }
 
     public void add(String keyword) {
@@ -35,4 +35,5 @@ public class SearchEngine {
             searchable[size++] = list;
         }
     }
+
 }

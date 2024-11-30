@@ -1,22 +1,14 @@
 package org.skypro.skyshop.product;
 
-import org.skypro.skyshop.article.Article;
+import org.skypro.skyshop.Article.Searchable;
 
 import java.util.Objects;
 
-public abstract class Product implements Article.Searchable {
+public abstract class Product implements Searchable {
     private String title;
 
     public Product(String title) {
         this.title = title;
-    }
-
-    public void searchTerm() {
-        System.out.println(getTitle());
-    }
-
-    public void contentType() {
-        System.out.println("PRODUCT");
     }
 
     public String getTitle() {
@@ -32,6 +24,21 @@ public abstract class Product implements Article.Searchable {
     }
 
     public abstract int getPrice();
+
+    @Override
+    public String searchTerm() {
+        return getTitle();
+    }
+
+    @Override
+    public String contentType() {
+        return "PRODUCT";
+    }
+
+    @Override
+    public String nameTerm() {
+        return "ЧТО ТУТ ДОЛЖНО БЫТЬ?";
+    }
 
     @Override
     public boolean equals(Object o) {
