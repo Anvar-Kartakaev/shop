@@ -1,5 +1,8 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.Article.Article;
+import org.skypro.skyshop.Article.Searchable;
+import org.skypro.skyshop.SearchEngine.SearchEngine;
 import org.skypro.skyshop.basket.ProductBasket;
 
 public class App {
@@ -7,8 +10,17 @@ public class App {
     public static void main(String[] args) {
         ProductBasket productBasket = new ProductBasket();
 
+        // Добавляю Search Engine и надо добавить в него все товары для проверки других методов
+        // Не понимаю как
+        SearchEngine searchEngine = new SearchEngine();
+
+        // Добавляю статью
+        System.out.println("Добавляю статью");
+        Article article = new Article("Article Title #1", "Article Description #1");
+        article.toString();
+
         //Добавление продукта в корзину
-        System.out.println("Добавление продукта в корзину");
+        System.out.println("\nДобавление продукта в корзину");
         productBasket.acceptProducts("Яблоки", 50); // Обычный товар
         productBasket.acceptDiscountProducts("Бананы", 100, 20); // Товар со скидкой
         productBasket.acceptDiscountProducts("Орехи", 150, 30); // Товар со скидкой

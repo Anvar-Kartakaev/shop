@@ -20,7 +20,7 @@ public class SearchEngine {
 
     String search(String query) {
         for (Searchable value : searchable) {
-            if (value != null) {
+            if (value != null && value.getSearchTerm().toLowerCase().contains(query.toLowerCase())) {
                 System.out.println(value);
             }
         }

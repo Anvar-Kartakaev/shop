@@ -1,10 +1,16 @@
 package org.skypro.skyshop.Article;
 
+import java.util.Arrays;
+
 public interface Searchable {
 
-    String searchTerm();
+    default String getStringRepresentation() {
+        return getClass().getSimpleName();
+    }
 
-    String contentType();
+    String getSearchTerm();
 
-    String nameTerm();
+    String getContentType();
+
+    String getNameTerm();
 }

@@ -26,17 +26,17 @@ public abstract class Product implements Searchable {
     public abstract int getPrice();
 
     @Override
-    public String searchTerm() {
+    public String getSearchTerm() {
         return getTitle();
     }
 
     @Override
-    public String contentType() {
+    public String getContentType() {
         return "PRODUCT";
     }
 
     @Override
-    public String nameTerm() {
+    public String getNameTerm() {
         return "ЧТО ТУТ ДОЛЖНО БЫТЬ?";
     }
 

@@ -22,17 +22,17 @@ public class Article implements Searchable {
     }
 
     @Override
-    public String searchTerm() {
+    public String getSearchTerm() {
         return getArticleTitle() + "\n" + getArticleDescription();
     }
 
     @Override
-    public String contentType() {
+    public String getContentType() {
         return "ARTICLE";
     }
 
     @Override
-    public String nameTerm() {
+    public String getNameTerm() {
         return "ЧТО ТУТ ДОЛЖНО БЫТЬ?";
     }
 }
