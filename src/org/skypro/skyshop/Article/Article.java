@@ -33,6 +33,6 @@ public class Article implements Searchable {
 
     @Override
     public String getNameTerm() {
-        return "ЧТО ТУТ ДОЛЖНО БЫТЬ?";
+        return getArticleTitle();
     }
 }

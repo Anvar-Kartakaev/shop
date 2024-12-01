@@ -5,7 +5,7 @@ import java.util.Arrays;
 public interface Searchable {
 
     default String getStringRepresentation() {
-        return getClass().getSimpleName();
+        return "Объект " + getContentType() + " типа " + getNameTerm();
     }
 
     String getSearchTerm();

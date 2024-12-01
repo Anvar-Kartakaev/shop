@@ -6,7 +6,7 @@ public class SearchEngine {
     private final Searchable[] searchable;
     private int size;
 
-    public SearchEngine(Searchable[] searchable) {
+    public SearchEngine() {
         this.searchable = new Searchable[5];
     }
 
@@ -18,10 +18,11 @@ public class SearchEngine {
         return size;
     }
 
-    String search(String query) {
+    public String search(String query) {
         for (Searchable value : searchable) {
             if (value != null && value.getSearchTerm().toLowerCase().contains(query.toLowerCase())) {
-                System.out.println(value);
+                Searchable[] results = new Searchable[5];
+                results[0] = value;
             }
         }
         return query;

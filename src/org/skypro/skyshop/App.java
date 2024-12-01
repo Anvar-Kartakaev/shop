@@ -9,15 +9,24 @@ public class App {
 
     public static void main(String[] args) {
         ProductBasket productBasket = new ProductBasket();
-
-        // Добавляю Search Engine и надо добавить в него все товары для проверки других методов
-        // Не понимаю как
         SearchEngine searchEngine = new SearchEngine();
 
-        // Добавляю статью
-        System.out.println("Добавляю статью");
+        // Добавляю Search Engine и надо добавить в него все товары для проверки других методов
+        System.out.println("Добавляю все товары");
+        searchEngine.add("Яблоки");
+        searchEngine.add("Бананы");
+        searchEngine.add("Орехи");
+        searchEngine.add("Киви");
+
+        // Создаем несколько объектов типа Article и добавляем их в Search Engine
+        System.out.println("\nДобавляю статью");
         Article article = new Article("Article Title #1", "Article Description #1");
-        article.toString();
+        System.out.println(article.toString());
+        searchEngine.add("Article Title #1, Article Description #1");
+
+        // Продемонстрируем функциональность поиска с помощью объекта SearchEngine
+        System.out.println("\nПробуем поискать");
+        searchEngine.search("Яблоки");
 
         //Добавление продукта в корзину
         System.out.println("\nДобавление продукта в корзину");
