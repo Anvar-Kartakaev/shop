@@ -9,7 +9,7 @@ public class App {
 
     public static void main(String[] args) {
         ProductBasket productBasket = new ProductBasket();
-        SearchEngine searchEngine = new SearchEngine();
+        SearchEngine searchEngine = new SearchEngine[];
 
         // Добавляю Search Engine и надо добавить в него все товары для проверки других методов
         System.out.println("Добавляю все товары");
