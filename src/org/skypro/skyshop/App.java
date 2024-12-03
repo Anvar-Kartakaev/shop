@@ -4,29 +4,15 @@ import org.skypro.skyshop.Article.Article;
 import org.skypro.skyshop.Article.Searchable;
 import org.skypro.skyshop.SearchEngine.SearchEngine;
 import org.skypro.skyshop.basket.ProductBasket;
+import org.skypro.skyshop.product.Product;
+
+import java.util.Arrays;
+import java.util.Stack;
 
 public class App {
 
     public static void main(String[] args) {
         ProductBasket productBasket = new ProductBasket();
-        SearchEngine searchEngine = new SearchEngine[];
-
-        // Добавляю Search Engine и надо добавить в него все товары для проверки других методов
-        System.out.println("Добавляю все товары");
-        searchEngine.add("Яблоки");
-        searchEngine.add("Бананы");
-        searchEngine.add("Орехи");
-        searchEngine.add("Киви");
-
-        // Создаем несколько объектов типа Article и добавляем их в Search Engine
-        System.out.println("\nДобавляю статью");
-        Article article = new Article("Article Title #1", "Article Description #1");
-        System.out.println(article.toString());
-        searchEngine.add("Article Title #1, Article Description #1");
-
-        // Продемонстрируем функциональность поиска с помощью объекта SearchEngine
-        System.out.println("\nПробуем поискать");
-        searchEngine.search("Яблоки");
 
         //Добавление продукта в корзину
         System.out.println("\nДобавление продукта в корзину");
@@ -79,6 +65,39 @@ public class App {
         //Поиск товара по имени в пустой корзине
         System.out.println("\nПоиск товара по имени в пустой корзине");
         productBasket.checkingProduct("Бананы");
+
+        //Добавление продуктов в корзину
+        System.out.println("\nДобавление продуктов в корзину");
+        productBasket.acceptProducts("Яблоки", 50); // Обычный товар
+        productBasket.acceptProducts("Ананас", 90); // Обычный товар
+        productBasket.acceptDiscountProducts("Бананы", 100, 20); // Товар со скидкой
+        productBasket.acceptDiscountProducts("Орехи", 150, 30); // Товар со скидкой
+        productBasket.acceptFixPriceProducts("Киви"); // Товар со специальной фиксированной ценой
+        productBasket.printAllContentBasket();
+
+        // Создаем несколько объектов типа Article и добавляем их в Search Engine
+        System.out.println("\nДобавляю статьи");
+        Article article = new Article("Article Title #1", "Article Description #1");
+        Article article2 = new Article("Article Title #2", "Article Description #2");
+
+        // Добавляю Search Engine и надо добавить в него все товары для проверки других методов
+        System.out.println("\nДобавляю все товары");
+        Stack<Searchable> searchEngine = new Stack<>();
+        searchEngine.add(productBasket.getProduct()[0]);
+        searchEngine.add(productBasket.getProduct()[1]);
+        searchEngine.add(productBasket.getProduct()[2]);
+        searchEngine.add(productBasket.getProduct()[3]);
+        searchEngine.add(productBasket.getProduct()[4]);
+        searchEngine.add(article);
+        searchEngine.add(article2);
+
+        // Продемонстрируем функциональность поиска с помощью объекта SearchEngine
+        System.out.println("\nПробуем поискать");
+        Searchable[] search = searchEngine.toArray(new Searchable[0]);
+        System.out.println("Результаты поиска:");
+        System.out.println(Arrays.toString(search));
+        searchEngine.search("Яблоки");
+
 
     }
 }
