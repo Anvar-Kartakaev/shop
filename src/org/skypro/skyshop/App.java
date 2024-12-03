@@ -2,8 +2,10 @@ package org.skypro.skyshop;
 
 import org.skypro.skyshop.Article.Article;
 import org.skypro.skyshop.Article.Searchable;
+import org.skypro.skyshop.SearchEngine.SearchEngine;
 import org.skypro.skyshop.basket.ProductBasket;
 
+import javax.naming.directory.SearchResult;
 import java.util.Arrays;
 import java.util.Stack;
 
@@ -80,20 +82,20 @@ public class App {
 
         // Добавляю Search Engine и надо добавить в него все товары для проверки других методов
         System.out.println("\nДобавляю все товары");
-        Stack<Searchable> searchEngine = new Stack<>();
+        SearchEngine searchEngine = new SearchEngine(5);
         searchEngine.add(productBasket.getProduct()[0]);
         searchEngine.add(productBasket.getProduct()[1]);
         searchEngine.add(productBasket.getProduct()[2]);
         searchEngine.add(productBasket.getProduct()[3]);
-        searchEngine.add(productBasket.getProduct()[4]);
         searchEngine.add(article);
+        //Попробуем добавить одинаковый товар
+        searchEngine.add(productBasket.getProduct()[1]);
+        //Попробуем добавить 6ой товар
         searchEngine.add(article2);
 
         // Продемонстрируем функциональность поиска с помощью объекта SearchEngine
         System.out.println("\nПробуем поискать (вывод всех объектов):");
-        Searchable[] searching = searchEngine.toArray(new Searchable[0]);
-        System.out.println("Результаты поиска:");
-        System.out.println(Arrays.toString(searching));
+        System.out.println(Arrays.toString(searchEngine.getSearchable())); // Хотя объектов 7, выводит ровно 5
 
         System.out.println("\nВывод всех объектов с определением типа:");
         System.out.println(productBasket.getProduct()[0].getStringRepresentation());
@@ -105,7 +107,8 @@ public class App {
         System.out.println(article2.getStringRepresentation());
 
         System.out.println("\nПробуем что-нибудь найти:");
-        searchEngine.search("Яблоки"); // Не работает
+        searchEngine.search("Яблоки");
+        searchEngine.search("Ананас");
 
     }
 }

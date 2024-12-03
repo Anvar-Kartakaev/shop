@@ -23,7 +23,7 @@ public class Article implements Searchable {
 
     @Override
     public String getSearchTerm() {
-        return getArticleTitle() + "\n" + getArticleDescription();
+        return getArticleTitle();
     }
 
     @Override
