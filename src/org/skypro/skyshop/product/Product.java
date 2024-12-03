@@ -37,7 +37,7 @@ public abstract class Product implements Searchable {
 
     @Override
     public String getNameTerm() {
-        return "ЧТО ТУТ ДОЛЖНО БЫТЬ?";
+        return getTitle();
     }
 
     @Override

@@ -2,9 +2,7 @@ package org.skypro.skyshop;
 
 import org.skypro.skyshop.Article.Article;
 import org.skypro.skyshop.Article.Searchable;
-import org.skypro.skyshop.SearchEngine.SearchEngine;
 import org.skypro.skyshop.basket.ProductBasket;
-import org.skypro.skyshop.product.Product;
 
 import java.util.Arrays;
 import java.util.Stack;
@@ -77,8 +75,8 @@ public class App {
 
         // Создаем несколько объектов типа Article и добавляем их в Search Engine
         System.out.println("\nДобавляю статьи");
-        Article article = new Article("Article Title #1", "Article Description #1");
-        Article article2 = new Article("Article Title #2", "Article Description #2");
+        Article article = new Article("Хорошая жизнь", "Вся жизнь человека");
+        Article article2 = new Article("Будни программиста", "Основано на реальных событиях");
 
         // Добавляю Search Engine и надо добавить в него все товары для проверки других методов
         System.out.println("\nДобавляю все товары");
@@ -92,12 +90,22 @@ public class App {
         searchEngine.add(article2);
 
         // Продемонстрируем функциональность поиска с помощью объекта SearchEngine
-        System.out.println("\nПробуем поискать");
-        Searchable[] search = searchEngine.toArray(new Searchable[0]);
+        System.out.println("\nПробуем поискать (вывод всех объектов):");
+        Searchable[] searching = searchEngine.toArray(new Searchable[0]);
         System.out.println("Результаты поиска:");
-        System.out.println(Arrays.toString(search));
-        searchEngine.search("Яблоки");
+        System.out.println(Arrays.toString(searching));
 
+        System.out.println("\nВывод всех объектов с определением типа:");
+        System.out.println(productBasket.getProduct()[0].getStringRepresentation());
+        System.out.println(productBasket.getProduct()[1].getStringRepresentation());
+        System.out.println(productBasket.getProduct()[2].getStringRepresentation());
+        System.out.println(productBasket.getProduct()[3].getStringRepresentation());
+        System.out.println(productBasket.getProduct()[4].getStringRepresentation());
+        System.out.println(article.getStringRepresentation());
+        System.out.println(article2.getStringRepresentation());
+
+        System.out.println("\nПробуем что-нибудь найти:");
+        searchEngine.search("Яблоки"); // Не работает
 
     }
 }
