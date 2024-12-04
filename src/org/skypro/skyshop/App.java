@@ -93,10 +93,6 @@ public class App {
         //Попробуем добавить 6ой товар
         searchEngine.add(article2);
 
-        // Продемонстрируем функциональность поиска с помощью объекта SearchEngine
-        System.out.println("\nПробуем поискать (вывод всех объектов):");
-        System.out.println(Arrays.toString(searchEngine.getSearchable())); // Хотя объектов 7, выводит ровно 5
-
         System.out.println("\nВывод всех объектов с определением типа:");
         System.out.println(productBasket.getProduct()[0].getStringRepresentation());
         System.out.println(productBasket.getProduct()[1].getStringRepresentation());
@@ -107,8 +103,8 @@ public class App {
         System.out.println(article2.getStringRepresentation());
 
         System.out.println("\nПробуем что-нибудь найти:");
-        searchEngine.search("Яблоки");
-        searchEngine.search("Ананас");
+        searchEngine.search("Яблоки"); // Должен найти
+        searchEngine.search("Генадий"); // Не должен найти
 
     }
 }

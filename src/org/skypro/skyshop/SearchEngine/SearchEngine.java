@@ -12,10 +12,6 @@ public class SearchEngine {
         this.searchable = new Searchable[sizeArr];
     }
 
-    public Searchable[] getSearchable() {
-        return searchable;
-    }
-
     public int getCurrentSize() {
         return size;
     }
@@ -36,15 +32,15 @@ public class SearchEngine {
     }
 
     public void add(Searchable searchable) {
-        for (int i = 0; i < getSearchable().length; i++) {
-            if (getSearchable()[i] == null && getSearchable()[i] != searchable) {
-                getSearchable()[i] = searchable;
+        for (int i = 0; i < this.searchable.length; i++) {
+            if (this.searchable[i] == null && this.searchable[i] != searchable) {
+                this.searchable[i] = searchable;
                 System.out.println("Товар: (" + searchable.getSearchTerm() + ") добавлен");
                 break;
-            } else if (getSearchable()[i] != null && getSearchable()[i] == searchable) {
+            } else if (this.searchable[i] != null && this.searchable[i] == searchable) {
                 System.out.println("Данный товар уже добавлен");
                 break;
-            } else if (i == getSearchable().length - 1) {
+            } else if (i == this.searchable.length - 1) {
                 System.out.println("Массив поиска полон");
                 break;
             }
