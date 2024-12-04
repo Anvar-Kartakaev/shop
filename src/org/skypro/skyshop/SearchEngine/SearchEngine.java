@@ -31,16 +31,16 @@ public class SearchEngine {
         return results;
     }
 
-    public void add(Searchable searchable) {
-        for (int i = 0; i < this.searchable.length; i++) {
-            if (this.searchable[i] == null && this.searchable[i] != searchable) {
-                this.searchable[i] = searchable;
-                System.out.println("Товар: (" + searchable.getSearchTerm() + ") добавлен");
+    public void add(Searchable goSearchable) {
+        for (int i = 0; i < searchable.length; i++) {
+            if (searchable[i] == null && searchable[i] != goSearchable) {
+                searchable[i] = goSearchable;
+                System.out.println("Товар: (" + goSearchable.getSearchTerm() + ") добавлен");
                 break;
-            } else if (this.searchable[i] != null && this.searchable[i] == searchable) {
+            } else if (searchable[i] != null && searchable[i] == goSearchable) {
                 System.out.println("Данный товар уже добавлен");
                 break;
-            } else if (i == this.searchable.length - 1) {
+            } else if (i == searchable.length - 1) {
                 System.out.println("Массив поиска полон");
                 break;
             }
