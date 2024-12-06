@@ -47,4 +47,25 @@ public class SearchEngine {
         }
     }
 
+    public void find(String search) {
+        BestResultNotFound(search);
+    }
+
+    public void BestResultNotFound(String search) {
+        for (int i = 0; i < searchable.length; i++) {
+            if (search.isEmpty()) {
+                System.out.println("Вы ввели пустой поисковый запрос");
+                break;
+            }
+            if (search.isBlank()) {
+                System.out.println("Запрос не может состоять только из пробелов");
+                break;
+            }
+            if (search != null && searchable[i] != null && searchable[i].getSearchTerm().toLowerCase().contains(search.toLowerCase())) {
+                System.out.println(searchable[i].getSearchTerm());
+            }
+        }
+    }
+
 }
+

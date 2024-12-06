@@ -8,6 +8,16 @@ public class SimpleProduct extends Product {
     public SimpleProduct(String title, int price) {
         super(title);
         this.price = price;
+        try {
+            checkPrice(price);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Вы указали некорректную цену");
+        }
+        System.out.println("Проверка стоимости товара завершена SimpleProduct");
+    }
+
+    public static void checkPrice(int price) throws IllegalArgumentException {
+        if (price <= 0) throw new IllegalArgumentException();
     }
 
     @Override

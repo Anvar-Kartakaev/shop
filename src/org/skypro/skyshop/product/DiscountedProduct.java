@@ -9,7 +9,27 @@ public class DiscountedProduct extends Product {
     public DiscountedProduct(String title, int basePrice, int discountPercentage) {
         super(title);
         this.basePrice = basePrice;
+        try {
+            checkBasePrice(basePrice);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Вы указали некорректную цену");
+        }
+        System.out.println("Проверка стоимости товара завершена DiscountedProduct");
         this.discountPercentage = discountPercentage;
+        try {
+            checkDiscountPercentage(discountPercentage);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Вы указали некорректное значение скидки");
+        }
+        System.out.println("Проверка скидки товара завершена DiscountedProduct");
+    }
+
+    public static void checkBasePrice(int basePrice) throws IllegalArgumentException {
+        if (basePrice <= 0) throw new IllegalArgumentException();
+    }
+
+    public static void checkDiscountPercentage(int discountPercentage) throws IllegalArgumentException {
+        if (discountPercentage < 0 || discountPercentage > 100) throw new IllegalArgumentException();
     }
 
     public int getDiscountPercentage() {
