@@ -9,17 +9,19 @@ public abstract class Product implements Searchable {
     private String title;
 
     public Product(String title) {
-        this.title = title;
         try {
             isBlank(title);
         } catch (IllegalArgumentException e) {
             System.out.println("Вы указали некорректное имя");
         }
-        System.out.println("Проверка объекта: (" + title + ") завершена");
     }
 
-    public static void isBlank(String title) throws IllegalArgumentException {
-        if (title == null || title.trim().isEmpty()) throw new IllegalArgumentException();
+    public void isBlank(String title) throws IllegalArgumentException {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException();
+        } else {
+            this.title = title;
+        }
     }
 
     public String getTitle() {

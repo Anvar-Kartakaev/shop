@@ -107,7 +107,10 @@ public class App {
         productBasket.acceptProducts("Груши", 90); // Пустое название
         productBasket.acceptProducts("Яблоки", 70); // Нулевая стоимость
         productBasket.acceptProducts("Яблоки Голден", 110); // Нулевая стоимость
-        productBasket.acceptDiscountProducts("Бананы", 100, 25); // Некорректная скидка
+        productBasket.acceptDiscountProducts("Бананы", 120, 25); // Некорректная скидка
+
+        // Проверка состояния корзины
+        System.out.println("\nПроверка состояния корзины:");
         productBasket.printAllContentBasket();
 
         // Добавляю товары в SearchEngine
@@ -124,6 +127,7 @@ public class App {
         // Поиск самого подходящего элемента
         System.out.println("\nПоиск самого подходящего элемента:");
         searchEngine.find("Яблоки");
+
 
     }
 
