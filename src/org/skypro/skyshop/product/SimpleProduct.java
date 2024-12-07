@@ -11,9 +11,8 @@ public class SimpleProduct extends Product {
         try {
             checkPrice(price);
         } catch (IllegalArgumentException e) {
-            System.out.println("Вы указали некорректную цену");
+            throw new IllegalArgumentException("Указана некорректная стоимость для товара: " + price);
         }
-        System.out.println("Проверка стоимости товара завершена SimpleProduct");
     }
 
     public static void checkPrice(int price) throws IllegalArgumentException {

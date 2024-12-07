@@ -12,7 +12,7 @@ public abstract class Product implements Searchable {
         try {
             isBlank(title);
         } catch (IllegalArgumentException e) {
-            System.out.println("Вы указали некорректное имя");
+            throw new IllegalArgumentException("Вы указали некорректное имя");
         }
     }
 
