@@ -8,8 +8,22 @@ public class DiscountedProduct extends Product {
 
     public DiscountedProduct(String title, int basePrice, int discountPercentage) {
         super(title);
-        this.basePrice = basePrice;
-        this.discountPercentage = discountPercentage;
+        try {
+            checking(basePrice, discountPercentage);
+        } catch (IllegalArgumentException s) {
+            throw new IllegalArgumentException("Некорректные данные для товара: " + title, s);
+        }
+    }
+
+    public void checking(int basePrice, int discountPercentage) throws IllegalArgumentException {
+        if (basePrice < 1) {
+            throw new IllegalArgumentException("Стоимость товара не может быть 0 руб. или с отрицательным значением.");
+        } if (discountPercentage < 0 || discountPercentage > 100) {
+            throw new IllegalArgumentException("Скидка можно установить в диапазоне от 0% до 100%.");
+        } else {
+            this.basePrice = basePrice;
+            this.discountPercentage = discountPercentage;
+        }
     }
 
     public int getDiscountPercentage() {
