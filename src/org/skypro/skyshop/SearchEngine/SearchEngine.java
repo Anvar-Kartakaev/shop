@@ -2,57 +2,37 @@ package org.skypro.skyshop.SearchEngine;
 
 import org.skypro.skyshop.Article.Searchable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class SearchEngine {
-    private final Searchable[] searchable;
+    private final ArrayList<Searchable> searchable;
     private int size;
 
-    public SearchEngine(int sizeArr) {
-        this.searchable = new Searchable[sizeArr];
+    public SearchEngine() {
+        this.searchable = new ArrayList<>();
     }
 
     public int getCurrentSize() {
         return size;
     }
 
-    public Searchable[] search(String query) {
-        Searchable[] results = new Searchable[5];
-        int counter = 0;
-        for (Searchable value : searchable) {
-            if (value != null && value.getSearchTerm().toLowerCase().contains(query.toLowerCase())) {
-                results[counter++] = value;
-                if (counter >= searchable.length) {
-                    break;
-                }
-            }
-        }
-        System.out.println("Результат поиска: " + Arrays.toString(results));
-        return results;
+    public void search(String search) {
+        searchingMethod(search);
     }
 
     public void add(Searchable goSearchable) {
-        for (int i = 0; i < searchable.length; i++) {
-            if (searchable[i] == null && searchable[i] != goSearchable) {
-                searchable[i] = goSearchable;
-                System.out.println("Товар: (" + goSearchable.getSearchTerm() + ") добавлен");
-                break;
-            } else if (searchable[i] != null && searchable[i] == goSearchable) {
-                System.out.println("Данный товар уже добавлен");
-                break;
-            } else if (i == searchable.length - 1) {
-                System.out.println("Массив поиска полон");
-                break;
+        searchable.add(goSearchable);
+        size++;
+        System.out.println("Товар: " + goSearchable.getSearchTerm() + " - добавлен в SearchEngine");
+    }
+
+    public void searchingMethod(String search) {
+        for (int i = 0; i < searchable.size(); i++) {
+            if (search == null) {
+                throw new NullPointerException("Поисковая строка не может быть Null");
             }
-        }
-    }
-
-    public void find(String search) {
-        BestResultNotFound(search);
-    }
-
-    public void BestResultNotFound(String search) {
-        for (int i = 0; i < searchable.length; i++) {
             if (search.isEmpty()) {
                 System.out.println("Вы ввели пустой поисковый запрос");
                 break;
@@ -61,11 +41,10 @@ public class SearchEngine {
                 System.out.println("Запрос не может состоять только из пробелов");
                 break;
             }
-            if (search != null && searchable[i] != null && searchable[i].getSearchTerm().toLowerCase().contains(search.toLowerCase())) {
-                System.out.println(searchable[i].getSearchTerm());
+            if (search != null && searchable.get(i) != null && searchable.get(i).getSearchTerm().toLowerCase().contains(search.toLowerCase())) {
+                System.out.println(searchable.get(i));
             }
         }
     }
 
 }
-
