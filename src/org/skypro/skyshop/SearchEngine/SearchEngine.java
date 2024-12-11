@@ -18,21 +18,8 @@ public class SearchEngine {
         return size;
     }
 
-    public void search(String query) {
-        for (int i = 0; i < searchable.size(); i++) {
-            if (query.isEmpty()) {
-                System.out.println("Вы ввели пустой поисковый запрос");
-                break;
-            }
-            if (query.isBlank()) {
-                System.out.println("Запрос не может состоять только из пробелов");
-                break;
-            }
-            if (query != null && searchable.get(i) != null && searchable.get(i).getSearchTerm().toLowerCase().contains(query.toLowerCase())) {
-                System.out.println(searchable.get(i));
-                break;
-            }
-        }
+    public void search(String search) {
+        searchingMethod(search);
     }
 
     public void add(Searchable goSearchable) {
@@ -41,12 +28,11 @@ public class SearchEngine {
         System.out.println("Товар: " + goSearchable.getSearchTerm() + " - добавлен в SearchEngine");
     }
 
-    public void find(String search) {
-        BestResultNotFound(search);
-    }
-
-    public void BestResultNotFound(String search) {
+    public void searchingMethod(String search) {
         for (int i = 0; i < searchable.size(); i++) {
+            if (search == null) {
+                throw new NullPointerException("Поисковая строка не может быть Null");
+            }
             if (search.isEmpty()) {
                 System.out.println("Вы ввели пустой поисковый запрос");
                 break;

@@ -36,10 +36,6 @@ public class App {
         System.out.println("\nПоиск по товарам:");
         searchEngine.search("Груши");
 
-        // Поиск самого подходящего элемента
-        System.out.println("\nПоиск самого подходящего элемента:");
-        searchEngine.find("Яблоки");
-
         // Удалить существующий продукт из корзины
         System.out.println("\nУдалить существующий продукт из корзины:");
         productBasket.removeProduct("Груши");
