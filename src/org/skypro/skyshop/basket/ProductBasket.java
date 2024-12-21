@@ -5,20 +5,18 @@ import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
+import java.util.TreeMap;
 
 public class ProductBasket {
-    private final ArrayList<Product> product;
+    private final TreeMap<String, Product> product;
     private int size;
 
 
     public ProductBasket() {
-        this.product = new ArrayList<>();
+        this.product = new TreeMap<>();
     }
 
-    public ArrayList<Product> getProduct() {
+    public TreeMap<String, Product> getProduct() {
         return product;
     }
 
@@ -28,7 +26,7 @@ public class ProductBasket {
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(getProduct().toArray());
+        return product.hashCode();
     }
 
     @Override
@@ -36,27 +34,22 @@ public class ProductBasket {
         if (obj instanceof ProductBasket other) {
             if (obj == this) return true;
             if (obj.getClass() != getClass()) return false;
-            return java.util.Arrays.equals(getProduct().toArray(), other.getProduct().toArray());
+            return product.equals(other.product);
         }
         return false;
     }
 
     public String toString() {
-        return Arrays.toString(getProduct().toArray());
+        return product.toString();
     }
 
     // Новый метод удаления товаров из корзины
     public void removeProduct(String title) {
-        Iterator<Product> name = product.iterator();
-        while (name.hasNext()) {
-            Product product = name.next();
-            if (product.getTitle().equals(title)) {
-                System.out.println("Удаление товара: (" + product.getTitle() + ") - завершено.");
-                name.remove();
+        for (Product p : product.values()) {
+            if (p.getTitle().equals(title)) {
+                product.remove(p.getTitle());
                 size--;
-                break;
-            } else {
-                System.out.println("Товар: (" + title + ") - не существует.");
+                System.out.println("Товар: " + p.getTitle() + " - удален.");
                 break;
             }
         }
@@ -64,24 +57,24 @@ public class ProductBasket {
 
     // Метод #1 - принимаем обычные продукты
     public void acceptSimpleProduct(String title, int price) {
-        product.add(new SimpleProduct(title, price));
+        product.put(title, new SimpleProduct(title, price));
     }
 
     // Метод #1.2 - принимаем продукты со скидкой
     public void acceptDiscountProducts(String title, int basePrice, int discountPrice) {
-        product.add(new DiscountedProduct(title, basePrice, discountPrice));
+        product.put(title, new DiscountedProduct(title, basePrice, discountPrice));
     }
 
     // Метод #1.3 - принимаем продукты с фиксированной ценой
     public void acceptFixPriceProducts(String title) {
-        product.add(new FixPriceProduct(title));
+        product.put(title, new FixPriceProduct(title));
     }
 
     // Метод #2 - получения общей стоимости корзины
     public void acceptTotalPrice() {
         int sum = 0;
-        for (int i = 0; i < product.size(); i++) {
-            sum += product.get(i).getPrice();
+        for (Product p : product.values()) {
+            sum += product.get(p.getTitle()).getPrice();
         }
         System.out.println("Общая стоимость корзины: " + sum + " рублей.");
     }
@@ -90,13 +83,11 @@ public class ProductBasket {
     public void printAllContentBasket() {
         int sum = 0;
         int isSpecial = 0;
-        for (int i = 0; i < product.size(); i++) {
-            if (size <= product.size()) {
-                System.out.println(product.get(i).toString());
-                sum += product.get(i).getPrice();
-                if (product.get(i).isSpecial() == true) {
-                    isSpecial++;
-                }
+        for (Product product : product.values()) {
+            System.out.println(product.toString());
+            sum += product.getPrice();
+            if (product.isSpecial()) {
+                isSpecial++;
             }
         }
         System.out.println("Итого: " + sum + " рублей.\nСпециальных товаров: " + isSpecial + " шт.");
@@ -107,9 +98,9 @@ public class ProductBasket {
 
     // Метод #4 - проверяем продукт в корзине по имени
     public void checkingProduct(String title) {
-        for (int i = 0; i < product.size(); i++) {
-            if (product.get(i).getTitle().equals(title)) {
-                System.out.println("Продукт: " + product.get(i).getTitle() + " - есть в корзине");
+        for (Product p : product.values()) {
+            if (product.get(p.getTitle()).getTitle().equals(title)) {
+                System.out.println("Продукт: " + product.get(p.getTitle()) + " - есть в корзине");
                 return;
             }
         }
