@@ -10,7 +10,7 @@ public class App {
         SearchEngine searchEngine = new SearchEngine();
 
         // Добавляем товары в ProductBasket
-        System.out.println("\nДобавляем товары в ProductBasket:");
+        System.out.println("\nДобавляем товары в ProductBasket");
         productBasket.acceptSimpleProduct("Груши", 90);
         productBasket.acceptSimpleProduct("Яблоки", 70);
         productBasket.acceptSimpleProduct("Яблоки голден", 110);
@@ -24,17 +24,17 @@ public class App {
 
         // Добавляю товары в SearchEngine
         System.out.println("\nДобавляю товары в SearchEngine:");
-        searchEngine.add(productBasket.getProduct().get(0));
-        searchEngine.add(productBasket.getProduct().get(1));
-        searchEngine.add(productBasket.getProduct().get(2));
-        searchEngine.add(productBasket.getProduct().get(3));
-        searchEngine.add(productBasket.getProduct().get(4));
-        searchEngine.add(productBasket.getProduct().get(5));
-        searchEngine.add(productBasket.getProduct().get(6));
+        searchEngine.add(productBasket.getProduct().get("Груши"));
+        searchEngine.add(productBasket.getProduct().get("Яблоки"));
+        searchEngine.add(productBasket.getProduct().get("Яблоки голден"));
+        searchEngine.add(productBasket.getProduct().get("Бананы"));
+        searchEngine.add(productBasket.getProduct().get("Мандарины"));
+        searchEngine.add(productBasket.getProduct().get("Финики"));
+        searchEngine.add(productBasket.getProduct().get("Виноград"));
 
         // Поиск по товарам
         System.out.println("\nПоиск по товарам:");
-        searchEngine.search("Груши");
+        searchEngine.search("Яблоки");
 
         // Удалить существующий продукт из корзины
         System.out.println("\nУдалить существующий продукт из корзины:");
