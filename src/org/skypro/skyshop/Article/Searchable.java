@@ -1,6 +1,6 @@
 package org.skypro.skyshop.Article;
 
-import java.util.Arrays;
+import java.util.Comparator;
 
 public interface Searchable {
 
