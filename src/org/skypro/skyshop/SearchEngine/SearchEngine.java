@@ -2,17 +2,21 @@ package org.skypro.skyshop.SearchEngine;
 
 import org.skypro.skyshop.Article.Searchable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.Comparator;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class SearchEngine {
-    private final ArrayList<Searchable> searchable;
+    private final Set<Searchable> searchable;
     private int size;
 
     public SearchEngine() {
-        this.searchable = new ArrayList<>();
+        this.searchable = new TreeSet<>(new Comparator<Searchable>() {
+            @Override
+            public int compare(Searchable o1, Searchable o2) {
+                return o1.getSearchTerm().compareToIgnoreCase(o2.getSearchTerm());
+            }
+        });
     }
 
     public int getCurrentSize() {
@@ -33,7 +37,7 @@ public class SearchEngine {
                 break;
             }
             if (value.getSearchTerm().toLowerCase().contains(search.toLowerCase())) {
-                System.out.println(value.getSearchTerm() + " - " + value);
+                System.out.println(value.getSearchTerm());
             }
         }
     }
@@ -41,6 +45,6 @@ public class SearchEngine {
     public void add(Searchable goSearchable) {
         searchable.add(goSearchable);
         size++;
-        System.out.println("Товар: " + goSearchable.getSearchTerm() + " - добавлен в SearchEngine");
+        System.out.println(goSearchable.getContentType() + ": " + goSearchable.getSearchTerm() + " - добавлен в SearchEngine");
     }
 }

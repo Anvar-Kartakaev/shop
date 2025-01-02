@@ -58,16 +58,19 @@ public class ProductBasket {
     // Метод #1 - принимаем обычные продукты
     public void acceptSimpleProduct(String title, int price) {
         product.put(title, new SimpleProduct(title, price));
+        System.out.println("Товар: " + title + " - добавлен в корзину.");
     }
 
     // Метод #1.2 - принимаем продукты со скидкой
     public void acceptDiscountProducts(String title, int basePrice, int discountPrice) {
         product.put(title, new DiscountedProduct(title, basePrice, discountPrice));
+        System.out.println("Товар: " + title + " - добавлен в корзину.");
     }
 
     // Метод #1.3 - принимаем продукты с фиксированной ценой
     public void acceptFixPriceProducts(String title) {
         product.put(title, new FixPriceProduct(title));
+        System.out.println("Товар: " + title + " - добавлен в корзину.");
     }
 
     // Метод #2 - получения общей стоимости корзины
