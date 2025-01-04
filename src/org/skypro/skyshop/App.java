@@ -87,7 +87,7 @@ public class App {
 
         // Поиск по товарам
         System.out.println("\nПоиск по товарам:");
-        searchEngine.search("Гранат");
+        searchEngine.search("World");
 
 
     }

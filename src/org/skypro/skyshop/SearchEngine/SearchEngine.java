@@ -11,12 +11,18 @@ public class SearchEngine {
     private int size;
 
     public SearchEngine() {
-        this.searchable = new TreeSet<>(new Comparator<Searchable>() {
-            @Override
-            public int compare(Searchable o1, Searchable o2) {
-                return o1.getSearchTerm().compareToIgnoreCase(o2.getSearchTerm());
+        this.searchable = new TreeSet<>(new reverseString());
+    }
+
+    public static class reverseString implements Comparator<Searchable> {
+        @Override
+        public int compare(Searchable o1, Searchable o2) {
+            Integer one = Integer.compare(o1.getSearchTerm().length(), o2.getSearchTerm().length());
+            if (one == 0) {
+                return o1.getSearchTerm().compareTo(o2.getSearchTerm());
             }
-        });
+            return o1.getSearchTerm().compareTo(o2.getSearchTerm());
+        }
     }
 
     public int getCurrentSize() {
