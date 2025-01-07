@@ -1,7 +1,5 @@
 package org.skypro.skyshop.Article;
 
-import java.util.Comparator;
-
 public class Article implements Searchable {
     private final String articleTitle;
     private final String articleDescription;
@@ -52,10 +50,4 @@ public class Article implements Searchable {
         return getArticleTitle();
     }
 
-    public static class ReverseStringComparatorForArticles implements Comparator<String> {
-        @Override
-        public int compare(String s1, String s2) {
-            return s2.compareToIgnoreCase(s1);
-        }
-    }
 }
