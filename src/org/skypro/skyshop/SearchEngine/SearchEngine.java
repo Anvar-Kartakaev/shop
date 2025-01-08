@@ -19,8 +19,8 @@ public class SearchEngine {
         return size;
     }
 
-    public Set<Set> search(String search) {
-        Set<Set> result = new HashSet<>();
+    public Set<Searchable> search(String search) {
+        Set<Searchable> result = new HashSet<>();
         for (Searchable value : searchable) {
             if (search == null) {
                 throw new NullPointerException("Поисковая строка не может быть Null");
@@ -34,7 +34,7 @@ public class SearchEngine {
                 break;
             }
             if (value.getSearchTerm().toLowerCase().contains(search.toLowerCase())) {
-                result.add(Collections.singleton(value));
+                result.add(value);
             }
         }
         return result;
