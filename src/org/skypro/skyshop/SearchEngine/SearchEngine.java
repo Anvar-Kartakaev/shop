@@ -37,6 +37,7 @@ public class SearchEngine {
                 result.add(value);
             }
         }
+        System.out.println(result);
         return result;
     }
 
