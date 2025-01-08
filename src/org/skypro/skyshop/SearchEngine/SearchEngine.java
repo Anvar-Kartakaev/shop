@@ -2,7 +2,7 @@ package org.skypro.skyshop.SearchEngine;
 
 import org.skypro.skyshop.Article.Searchable;
 
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
@@ -19,8 +19,8 @@ public class SearchEngine {
         return size;
     }
 
-    public Set search(String search) {
-        Set<String> objects = new HashSet<>();
+    public Set<Set> search(String search) {
+        Set<Set> result = new HashSet<>();
         for (Searchable value : searchable) {
             if (search == null) {
                 throw new NullPointerException("Поисковая строка не может быть Null");
@@ -34,10 +34,10 @@ public class SearchEngine {
                 break;
             }
             if (value.getSearchTerm().toLowerCase().contains(search.toLowerCase())) {
-                objects.add(value.getSearchTerm());
+                result.add(Collections.singleton(value));
             }
         }
-        return objects;
+        return result;
     }
 
     public void add(Searchable goSearchable) {
