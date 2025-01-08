@@ -32,7 +32,7 @@ public class Article implements Searchable {
     }
 
     public String toString() {
-        return "\n" + getArticleTitle() + " - " + getArticleDescription();
+        return getArticleTitle() + " - " + getArticleDescription();
     }
 
     @Override

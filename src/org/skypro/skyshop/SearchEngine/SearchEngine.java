@@ -2,7 +2,6 @@ package org.skypro.skyshop.SearchEngine;
 
 import org.skypro.skyshop.Article.Searchable;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
@@ -17,6 +16,24 @@ public class SearchEngine {
 
     public int getCurrentSize() {
         return size;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof SearchEngine) {
+            return searchable.equals(((SearchEngine)obj).searchable);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return searchable.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return searchable.toString();
     }
 
     public Set<Searchable> search(String search) {
