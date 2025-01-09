@@ -17,20 +17,6 @@ public class Article implements Searchable {
         return articleDescription;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Article) {
-            Article other = (Article) obj;
-            return articleTitle.equals(other.articleTitle);
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return articleTitle.hashCode();
-    }
-
     public String toString() {
         return getArticleTitle() + " - " + getArticleDescription();
     }
