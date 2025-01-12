@@ -2,24 +2,42 @@ package org.skypro.skyshop.SearchEngine;
 
 import org.skypro.skyshop.Article.Searchable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class SearchEngine {
-    private final ArrayList<Searchable> searchable;
+    private final Set<Searchable> searchable;
     private int size;
 
     public SearchEngine() {
-        this.searchable = new ArrayList<>();
+        this.searchable = new TreeSet<>(new reverseString());
     }
 
     public int getCurrentSize() {
         return size;
     }
 
-    public void search(String search) {
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof SearchEngine) {
+            return searchable.equals(((SearchEngine)obj).searchable);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return searchable.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return searchable.toString();
+    }
+
+    public Set<Searchable> search(String search) {
+        Set<Searchable> result = new HashSet<>();
         for (Searchable value : searchable) {
             if (search == null) {
                 throw new NullPointerException("Поисковая строка не может быть Null");
@@ -33,14 +51,16 @@ public class SearchEngine {
                 break;
             }
             if (value.getSearchTerm().toLowerCase().contains(search.toLowerCase())) {
-                System.out.println(value.getSearchTerm() + " - " + value);
+                result.add(value);
             }
         }
+        System.out.println(result);
+        return result;
     }
 
     public void add(Searchable goSearchable) {
         searchable.add(goSearchable);
         size++;
-        System.out.println("Товар: " + goSearchable.getSearchTerm() + " - добавлен в SearchEngine");
+        System.out.println(goSearchable.getContentType() + ": " + goSearchable.getSearchTerm() + " - добавлен в SearchEngine");
     }
 }

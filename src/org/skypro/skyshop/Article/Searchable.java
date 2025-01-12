@@ -1,7 +1,5 @@
 package org.skypro.skyshop.Article;
 
-import java.util.Arrays;
-
 public interface Searchable {
 
     default String getStringRepresentation() {

@@ -18,7 +18,7 @@ public class Article implements Searchable {
     }
 
     public String toString() {
-        return "\n" + getArticleTitle() + "\n" + getArticleDescription();
+        return getArticleTitle() + " - " + getArticleDescription();
     }
 
     @Override
@@ -35,4 +35,5 @@ public class Article implements Searchable {
     public String getNameTerm() {
         return getArticleTitle();
     }
+
 }
