@@ -5,11 +5,13 @@ import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 
-import java.util.TreeMap;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ProductBasket {
     private final TreeMap<String, Product> product;
     private int size;
+    private int price;
 
 
     public ProductBasket() {
@@ -45,14 +47,7 @@ public class ProductBasket {
 
     // Новый метод удаления товаров из корзины
     public void removeProduct(String title) {
-        for (Product p : product.values()) {
-            if (p.getTitle().equals(title)) {
-                product.remove(p.getTitle());
-                size--;
-                System.out.println("Товар: " + p.getTitle() + " - удален.");
-                break;
-            }
-        }
+        product.entrySet().removeIf(entry -> entry.getKey().equals(title));
     }
 
     // Метод #1 - принимаем обычные продукты
@@ -75,39 +70,32 @@ public class ProductBasket {
 
     // Метод #2 - получения общей стоимости корзины
     public void acceptTotalPrice() {
-        int sum = 0;
-        for (Product p : product.values()) {
-            sum += product.get(p.getTitle()).getPrice();
-        }
-        System.out.println("Общая стоимость корзины: " + sum + " рублей.");
+        int result = product.values().stream()
+                .mapToInt(Product::getPrice)
+                .sum();
+        System.out.println("Общая стоимость корзины: " + result + " рублей.");
     }
 
     // Метод #3 - печатает содержимое корзины
     public void printAllContentBasket() {
-        int sum = 0;
-        int isSpecial = 0;
-        for (Product product : product.values()) {
-            System.out.println(product.toString());
-            sum += product.getPrice();
-            if (product.isSpecial()) {
-                isSpecial++;
-            }
-        }
-        System.out.println("Итого: " + sum + " рублей.\nСпециальных товаров: " + isSpecial + " шт.");
-        if (product.size() <= 0) {
-            System.out.println("В корзине пусто");
-        }
+        product.entrySet().forEach(System.out::println);
+        int result = product.values().stream()
+                .mapToInt(Product::getPrice)
+                .sum();
+        System.out.println("Итого: " + result + " рублей.");
+        int result2 = product.values().stream()
+                .filter(Objects::nonNull)
+                .filter(Product::isSpecial)
+                .toList().size();
+        System.out.println("Специальных товаров: " + result2 + " шт.");
     }
 
     // Метод #4 - проверяем продукт в корзине по имени
     public void checkingProduct(String title) {
-        for (Product p : product.values()) {
-            if (product.get(p.getTitle()).getTitle().equals(title)) {
-                System.out.println("Продукт: " + product.get(p.getTitle()) + " - есть в корзине");
-                return;
-            }
-        }
-        System.out.println("Продукта: " + title + " - нет в корзине");
+        Map<String, List<Product>> result = product.values().stream()
+                .filter(product -> product.getTitle().equals(title))
+                .collect(Collectors.groupingBy(Product::getTitle));
+        System.out.println(result);
     }
 
     // Метод #5 - очистка корзины

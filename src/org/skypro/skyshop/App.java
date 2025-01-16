@@ -89,6 +89,13 @@ public class App {
         System.out.println("\nПоиск по товарам:");
         searchEngine.search("Банан");
 
+        // Получаем общую стоимость корзины
+        System.out.println("\nПолучаем общую стоимость корзины:");
+        productBasket.acceptTotalPrice();
+
+        // Проверяем что продукт есть в корзине
+        System.out.println("\nПроверяем что продукт есть в корзине:");
+        productBasket.checkingProduct("Финики");
 
     }
 
